@@ -1,6 +1,7 @@
 import "./App.css";
 
 import Create from "./components/Create/Create";
+import Details from "./components/Details/Details";
 import Edit from "./components/Edit/Edit";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import Home from "./components/Home/Home";
@@ -19,6 +20,7 @@ function App() {
         <ErrorPage />
         <Create />
         <Edit />
+        <Details />
       </main>
     </>
   );
