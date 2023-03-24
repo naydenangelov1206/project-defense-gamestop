@@ -1,4 +1,5 @@
 import "./App.css";
+import ErrorPage from "./components/ErrorPage/ErrorPage";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
 import Navigation from "./components/Navigation/Navigation";
@@ -12,6 +13,7 @@ function App() {
         <Home />
         <Register />
         <Login />
+        <ErrorPage />
       </main>
     </>
   );
