@@ -1,0 +1,98 @@
+.editFormContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 93vh;
+  background-image: url("../../../public/images/valorant.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.editForm {
+  border: 5px solid white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  width: 600px;
+}
+
+.editFormTitle {
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.editForm label {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 25px;
+  color: white;
+  cursor: pointer;
+}
+
+.editForm label input {
+  display: block;
+  margin-top: 20px;
+  width: 300px;
+  padding: 5px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  font-size: 25px;
+  color: white;
+}
+
+.editForm label input:focus {
+  outline: none;
+}
+
+.editFormButton {
+  width: 300px;
+  margin-top: 40px;
+  border-radius: 50px;
+  padding: 10px;
+  font-size: 25px;
+  font-weight: bold;
+  background-color: transparent;
+  border: 5px solid white;
+  color: white;
+}
+
+.editFormButton:hover {
+  background-color: #3d435d;
+  cursor: pointer;
+}
+
+.editFormSummary {
+  display: block;
+  width: 500px;
+  height: 150px;
+  margin-top: 20px;
+  background-color: transparent;
+  border: 2px solid white;
+  font-size: 25px;
+  color: white;
+  resize: none;
+}
+
+.editFormSummary::-webkit-scrollbar {
+  width: 10px;
+  margin: 10px;
+}
+
+.editFormSummary::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.editFormSummary::-webkit-scrollbar-thumb {
+  background: #7d2b36;
+}
+
+.editFormSummary::-webkit-scrollbar-thumb:hover {
+  background: #45545a;
+}

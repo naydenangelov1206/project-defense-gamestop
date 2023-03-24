@@ -1,6 +1,7 @@
 import "./App.css";
 
 import Create from "./components/Create/Create";
+import Edit from "./components/Edit/Edit";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
@@ -17,6 +18,7 @@ function App() {
         <Login />
         <ErrorPage />
         <Create />
+        <Edit />
       </main>
     </>
   );
