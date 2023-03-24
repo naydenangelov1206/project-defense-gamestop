@@ -12,7 +12,7 @@ function Navigation() {
         <a href="/games/logout">Logout</a>
       </li>
       <li>
-        <p>Welcome, {user.email}</p>
+        <p className={styles.welcomeMessage}>Welcome, {user.email}</p>
       </li>
     </>
   );
@@ -38,7 +38,7 @@ function Navigation() {
           <li>
             <a href="/games/catalog">Catalog</a>
           </li>
-          {user.accessToken ? hasUser : noUser}
+          {user ? hasUser : noUser}
         </ul>
       </nav>
     </header>
