@@ -1,0 +1,88 @@
+.loginFormContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 93vh;
+  background-image: url("../../../public/images/valorant.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.formLogin {
+  border: 5px solid white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  width: 500px;
+}
+
+.loginFormTitle {
+  margin-bottom: 30px;
+  font-size: 40px;
+  text-align: center;
+  color: white;
+}
+
+.formLogin label {
+  display: block;
+  text-align: center;
+  margin-top: 30px;
+  font-size: 25px;
+  color: white;
+  cursor: pointer;
+}
+
+.formLogin label input {
+  display: block;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 300px;
+  padding: 5px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  font-size: 25px;
+  color: white;
+}
+
+.formLogin label input:focus {
+  outline: none;
+}
+
+.loginFormButton {
+  width: 300px;
+  margin-top: 30px;
+  border-radius: 50px;
+  padding: 10px;
+  font-size: 25px;
+  background-color: transparent;
+  font-weight: bold;
+  border: 5px solid white;
+  color: white;
+}
+
+.loginFormButton:hover {
+  background-color: #3d435d;
+  cursor: pointer;
+}
+
+.gotoRegister {
+  margin-top: 50px;
+  font-size: 25px;
+  color: rgb(255, 255, 255);
+}
+
+.registerLink {
+  color: #7d2b36;
+  font-weight: bold;
+}
+
+.errorMessage {
+  text-align: center;
+  color: white;
+  font-size: 25px;
+}
