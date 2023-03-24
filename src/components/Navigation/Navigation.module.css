@@ -1,0 +1,36 @@
+.navigationBox {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  height: 7vh;
+  background-color: rgb(125, 43, 54);
+}
+
+.navigationBox li a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  font-size: 30px;
+  padding: 15px;
+  text-align: center;
+}
+
+.navigationBox li p {
+  display: block;
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  padding: 15px;
+  text-align: center;
+  cursor: default;
+}
+
+.navigationBox li {
+  list-style-type: none;
+}
+
+.navigationBox li a:hover {
+  background-color: #3d435d;
+  border-bottom: 5px solid #b7dcec;
+}
