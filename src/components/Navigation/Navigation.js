@@ -2,7 +2,7 @@ import styles from "./Navigation.module.css";
 
 import { Link } from "react-router-dom";
 function Navigation() {
-  const user = false;
+  const user = true;
 
   const hasUser = (
     <>
@@ -34,7 +34,7 @@ function Navigation() {
       <nav>
         <ul className={styles.navigationBox}>
           <li>
-            <Link to="/games">GameStop🎮</Link>
+            <Link to="/">GameStop🎮</Link>
           </li>
           <li>
             <Link to="/games/catalog">Catalog</Link>
