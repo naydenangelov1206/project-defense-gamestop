@@ -21,3 +21,10 @@ export async function logout(accessToken) {
     console.log(err);
   }
 }
+
+export function register(email, password) {
+  return request.post(baseUrl + "/users/register", {
+    email,
+    password,
+  });
+}
