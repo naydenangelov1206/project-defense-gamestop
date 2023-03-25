@@ -24,8 +24,6 @@ function Login() {
     authService
       .login(loginInfo.email, loginInfo.password)
       .then(authData => {
-        debugger;
-        console.log(authData);
         userLogin(authData);
         navigate("/");
       })

@@ -1,7 +1,10 @@
 import styles from "./Register.module.css";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
+
+import * as authService from "../../services/authService";
 
 function Register() {
   const [registerInfo, setRegisterInfo] = useState({
@@ -11,10 +14,17 @@ function Register() {
   });
 
   const navigate = useNavigate();
+  const { userLogin } = useContext(AuthContext);
 
   function onSubmit(e) {
     e.preventDefault();
-    navigate("/");
+
+    authService
+      .register(registerInfo.email, registerInfo.password)
+      .then(authData => {
+        userLogin(authData);
+        navigate("/");
+      });
   }
 
   function onEmailChangeHandler(e) {
