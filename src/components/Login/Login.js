@@ -1,7 +1,9 @@
 import styles from "./Login.module.css";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
+import * as authService from "../../services/authService";
 
 function Login() {
   const [loginInfo, setLoginInfo] = useState({
@@ -11,11 +13,24 @@ function Login() {
 
   const [error, setError] = useState("");
 
+  const { userLogin } = useContext(AuthContext);
+
   const navigate = useNavigate("");
 
   function onSubmit(e) {
     e.preventDefault();
-    navigate("/");
+
+    authService
+      .login(loginInfo.email, loginInfo.password)
+      .then(authData => {
+        debugger;
+        console.log(authData);
+        userLogin(authData);
+        navigate("/");
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
   }
 
   function onEmailChangeHandler(e) {

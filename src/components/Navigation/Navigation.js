@@ -1,8 +1,11 @@
 import styles from "./Navigation.module.css";
 
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+
 function Navigation() {
-  const user = true;
+  const { user } = useContext(AuthContext);
 
   const hasUser = (
     <>
@@ -39,7 +42,7 @@ function Navigation() {
           <li>
             <Link to="/games/catalog">Catalog</Link>
           </li>
-          {user ? hasUser : noUser}
+          {user.accessToken ? hasUser : noUser}
         </ul>
       </nav>
     </header>
