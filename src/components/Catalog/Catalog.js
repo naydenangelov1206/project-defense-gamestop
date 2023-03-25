@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import styles from "./Catalog.module.css";
+import Game from "./Game";
 
 function Catalog() {
   const games = [
@@ -19,24 +19,7 @@ function Catalog() {
 
       <div className={styles.gameCardContainer}>
         {games.length > 0 ? (
-          games.map((game, i) => (
-            <div className={styles.gameCard} key={i}>
-              <img
-                src="../../images/Minecraft.png"
-                alt="someImage"
-                className={styles.gameCardImg}
-              />
-              <p>Title: {game.title}</p>
-              <p>Category: {game.category}</p>
-
-              <Link
-                to={"/games/details/" + game._id}
-                className={styles.gameCardDetailsLink}
-              >
-                Details 🛈
-              </Link>
-            </div>
-          ))
+          games.map((game, i) => <Game game={game} key={i} />)
         ) : (
           <div className={styles.loadingContainer}>
             <p className={styles.loadingMessage}>Loading ...</p>
