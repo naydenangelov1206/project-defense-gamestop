@@ -6,6 +6,7 @@ import { GameContext } from "../../contexts/GameContext";
 import { AuthContext } from "../../contexts/AuthContext";
 
 import * as gameService from "../../services/gameService";
+import * as commentService from "../../services/commentService";
 
 function Details() {
   const [gameComment, setComment] = useState({
@@ -13,7 +14,8 @@ function Details() {
   });
 
   const { gameId } = useParams();
-  const { fetchGameDetails, selectGame, gameDelete } = useContext(GameContext);
+  const { fetchGameDetails, selectGame, gameDelete, addComment } =
+    useContext(GameContext);
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -42,6 +44,10 @@ function Details() {
 
   function addCommentHandler(e) {
     e.preventDefault();
+
+    commentService.create(gameId, gameComment.comment).then(res => {
+      addComment(gameId, user.email + ": " + res.text);
+    });
   }
 
   function onCommentChange(e) {
