@@ -1,17 +1,31 @@
 import styles from "./Details.module.css";
 
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { GameContext } from "../../contexts/GameContext";
+import { AuthContext } from "../../contexts/AuthContext";
+
+import * as gameService from "../../services/gameService";
 
 function Details() {
   const [gameComment, setComment] = useState({
     comment: "",
   });
 
-  const comments = ["pesho@abv.bg: so good", "ivo@abv.bg: i like it"];
+  const { gameId } = useParams();
+  const { fetchGameDetails, selectGame } = useContext(GameContext);
+  const { user } = useContext(AuthContext);
 
-  const isOwner = true;
-  const accessToken = true;
+  const navigate = useNavigate();
+
+  const currentGame = selectGame(gameId);
+  const isOwner = currentGame?._ownerId === user._id;
+
+  useEffect(() => {
+    gameService.getOne(gameId).then(result => {
+      fetchGameDetails(gameId, result);
+    });
+  });
 
   function onCommentChange(e) {
     setComment({ ...gameComment, comment: e.target.value });
@@ -29,26 +43,26 @@ function Details() {
     <section className={styles.detailsPageContainer}>
       <div className={styles.detailsContainer}>
         <img
-          src="../../images/Minecraft.png"
+          src={currentGame.imageUrl}
           alt="someImage"
           className={styles.detailsImage}
         />
 
-        <p>Title: gameTitle</p>
+        <p>Title: {currentGame.title}</p>
         <p>
           Summary:
           <br />
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum iure
-          officiis natus ad inventore molestiae vero neque, explicabo voluptates
-          fugiat nam debitis suscipit fuga quo cupiditate odit rem dolor
-          provident?
+          {currentGame.summary}
         </p>
-        <p>Category: FPS Shooter</p>
-        <p>MaxLevel: 69</p>
+        <p>Category: {currentGame.category}</p>
+        <p>MaxLevel: {currentGame.maxLevel}</p>
 
         {isOwner && (
           <div className={styles.buttonContainer}>
-            <Link to="/games/edit/" className={styles.editButtonLink}>
+            <Link
+              to={"/games/edit/" + gameId}
+              className={styles.editButtonLink}
+            >
               Edit ✏️
             </Link>
             <button onClick={gameDeleteHandler} className={styles.deleteButton}>
@@ -61,7 +75,7 @@ function Details() {
       <h3 className={styles.commentsTitle}>Comments</h3>
 
       <div className={styles.commentContainer}>
-        {!isOwner && accessToken && (
+        {!isOwner && user.accessToken && (
           <form onSubmit={addCommentHandler} className={styles.commentsForm}>
             <h2 className={styles.commentsFormTitle}>Add New Comment</h2>
 
@@ -76,8 +90,8 @@ function Details() {
           </form>
         )}
 
-        {comments &&
-          comments.map((x, i) => (
+        {currentGame.comments &&
+          currentGame.comments.map((x, i) => (
             <div className={styles.commentsContainer} key={i}>
               <p className={styles.comments}>{x}</p>
             </div>

@@ -5,3 +5,7 @@ import { baseUrl } from "../utils/address";
 export function getAll() {
   return request.get(baseUrl + "/data/games?sortBy=_createdOn%20desc");
 }
+
+export function getOne(gameId) {
+  return request.get(baseUrl + "/data/games/" + gameId);
+}
