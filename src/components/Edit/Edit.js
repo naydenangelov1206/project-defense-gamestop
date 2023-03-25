@@ -1,10 +1,12 @@
 import styles from "./Edit.module.css";
 
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { GameContext } from "../../contexts/GameContext";
+
+import * as gameService from "../../services/gameService";
 
 function Edit() {
-  const [currentGame, setCurrentGame] = useState({});
   const [editInfo, setEditInfo] = useState({
     title: "",
     imageUrl: "",
@@ -14,6 +16,23 @@ function Edit() {
   });
 
   const navigate = useNavigate();
+
+  const { gameId } = useParams();
+  const { gameEdit } = useContext(GameContext);
+
+  useEffect(() => {
+    gameService.getOne(gameId).then(gameData => {
+      gameEdit(gameData);
+      setEditInfo({
+        ...editInfo,
+        title: gameData.title,
+        imageUrl: gameData.imageUrl,
+        summary: gameData.summary,
+        category: gameData.category,
+        maxLevel: gameData.maxLevel,
+      });
+    });
+  }, []);
 
   function onSubmit(e) {
     e.preventDefault();
@@ -26,7 +45,10 @@ function Edit() {
       maxLevel: editInfo.maxLevel,
     };
 
-    navigate("/games/create");
+    gameService.edit(gameId, gameData).then(result => {
+      gameEdit(gameId, result);
+      navigate("/games/catalog");
+    });
   }
 
   function onTitleChangeHandler(e) {

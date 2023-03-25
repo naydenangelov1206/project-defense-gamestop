@@ -12,6 +12,8 @@ function gameReducer(state, action) {
       return state.map(x => (x._id === action.gameId ? action.payload : x));
     case "ADD_GAME":
       return [...state, action.payload];
+    case "EDIT_GAME":
+      return state.map(x => (x._id === action.gameId ? action.payload : x));
     default:
       return state;
   }
@@ -47,6 +49,17 @@ export function GameProvider({ children }) {
     });
   }
 
+  function gameEdit(gameId, gameData) {
+    gameDispatcher({
+      type: "EDIT_GAME",
+      payload: {
+        ...gameData,
+        comments: selectGame(gameId)?.comments || {},
+      },
+      gameId,
+    });
+  }
+
   function selectGame(gameId) {
     return games.find(x => x._id === gameId);
   }
@@ -58,6 +71,7 @@ export function GameProvider({ children }) {
         fetchGameDetails,
         selectGame,
         gameAdd,
+        gameEdit,
       }}
     >
       {children}

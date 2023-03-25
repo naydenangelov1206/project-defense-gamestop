@@ -13,3 +13,7 @@ export function getOne(gameId) {
 export function create(gameData) {
   return request.post(baseUrl + "/data/games", gameData);
 }
+
+export function edit(gameId, gameData) {
+  return request.put(baseUrl + "/data/games/" + gameId, gameData);
+}
