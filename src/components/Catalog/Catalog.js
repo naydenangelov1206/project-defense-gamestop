@@ -1,15 +1,16 @@
+import { useEffect, useState } from "react";
 import styles from "./Catalog.module.css";
 import Game from "./Game";
+import * as gameService from "../../services/gameService";
 
 function Catalog() {
-  const games = [
-    { title: "minecraft", category: "Open World" },
-    { title: "minecraft", category: "Open World" },
-    { title: "minecraft", category: "Open World" },
-    { title: "minecraft", category: "Open World" },
-    { title: "minecraft", category: "Open World" },
-    { title: "minecraft", category: "Open World" },
-  ];
+  const [games, setGames] = useState([]);
+
+  useEffect(() => {
+    gameService.getAll().then(gameData => {
+      setGames(gameData);
+    });
+  }, []);
 
   return (
     <section className={styles.catalogContainer}>
@@ -19,7 +20,7 @@ function Catalog() {
 
       <div className={styles.gameCardContainer}>
         {games.length > 0 ? (
-          games.map((game, i) => <Game game={game} key={i} />)
+          games.map(game => <Game game={game} key={game._id} />)
         ) : (
           <div className={styles.loadingContainer}>
             <p className={styles.loadingMessage}>Loading ...</p>

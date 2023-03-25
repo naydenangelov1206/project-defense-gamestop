@@ -5,11 +5,7 @@ import { Link } from "react-router-dom";
 function Game({ game }) {
   return (
     <div className={styles.gameCard}>
-      <img
-        src="../../images/Minecraft.png"
-        alt="someImage"
-        className={styles.gameCardImg}
-      />
+      <img src={game.imageUrl} alt="someImage" className={styles.gameCardImg} />
       <p>Title: {game.title}</p>
       <p>Category: {game.category}</p>
 
