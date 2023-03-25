@@ -10,11 +10,16 @@ export function AuthProvider({ children }) {
     setUser(user);
   }
 
+  function userLogout() {
+    setUser({});
+  }
+
   return (
     <AuthContext.Provider
       value={{
         user,
         userLogin,
+        userLogout,
         isAuthenticated: !!user.accessToken,
       }}
     >
