@@ -1,5 +1,7 @@
-import { useState } from "react";
 import styles from "./Register.module.css";
+
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
 function Register() {
   const [registerInfo, setRegisterInfo] = useState({
@@ -8,8 +10,11 @@ function Register() {
     repass: "",
   });
 
+  const navigate = useNavigate();
+
   function onSubmit(e) {
     e.preventDefault();
+    navigate("/");
   }
 
   function onEmailChangeHandler(e) {
@@ -74,10 +79,10 @@ function Register() {
 
         <p className={styles.gotoLogin}>
           If you have an account{" "}
-          <a href="/games/login" className={styles.LoginLink}>
+          <Link to="/games/login" className={styles.LoginLink}>
             {" "}
             Login here 👈
-          </a>
+          </Link>
         </p>
       </form>
     </section>

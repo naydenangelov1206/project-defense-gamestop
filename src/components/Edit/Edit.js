@@ -1,5 +1,7 @@
-import { useState } from "react";
 import styles from "./Edit.module.css";
+
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Edit() {
   const [currentGame, setCurrentGame] = useState({});
@@ -11,6 +13,8 @@ function Edit() {
     maxLevel: "",
   });
 
+  const navigate = useNavigate();
+
   function onSubmit(e) {
     e.preventDefault();
 
@@ -21,6 +25,8 @@ function Edit() {
       category: editInfo.category,
       maxLevel: editInfo.maxLevel,
     };
+
+    navigate("/games/create");
   }
 
   function onTitleChangeHandler(e) {

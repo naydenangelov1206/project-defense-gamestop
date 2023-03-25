@@ -1,5 +1,7 @@
-import { useState } from "react";
 import styles from "./Create.module.css";
+
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Create() {
   const [createInfo, setCreateInfo] = useState({
@@ -10,8 +12,11 @@ function Create() {
     maxLevel: "",
   });
 
+  const navigate = useNavigate();
+
   function onSubmit(e) {
     e.preventDefault();
+    navigate("/as");
   }
 
   function onTitleChangeHandler(e) {

@@ -1,5 +1,7 @@
-import { useState } from "react";
 import styles from "./Login.module.css";
+
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
 function Login() {
   const [loginInfo, setLoginInfo] = useState({
@@ -9,8 +11,11 @@ function Login() {
 
   const [error, setError] = useState("");
 
+  const navigate = useNavigate("");
+
   function onSubmit(e) {
     e.preventDefault();
+    navigate("/");
   }
 
   function onEmailChangeHandler(e) {
@@ -58,10 +63,10 @@ function Login() {
 
         <p className={styles.gotoRegister}>
           If you don't have an account
-          <a href="/games/register" className={styles.registerLink}>
+          <Link to="/games/register" className={styles.registerLink}>
             {" "}
             Register here 👈
-          </a>
+          </Link>
         </p>
       </form>
     </section>

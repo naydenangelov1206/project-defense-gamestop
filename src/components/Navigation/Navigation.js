@@ -1,15 +1,16 @@
 import styles from "./Navigation.module.css";
 
+import { Link } from "react-router-dom";
 function Navigation() {
   const user = false;
 
   const hasUser = (
     <>
       <li>
-        <a href="/games/create">Create</a>
+        <Link to="/games/create">Create</Link>
       </li>
       <li>
-        <a href="/games/logout">Logout</a>
+        <Link to="/games/logout">Logout</Link>
       </li>
       <li>
         <p className={styles.welcomeMessage}>Welcome, {user.email}</p>
@@ -20,10 +21,10 @@ function Navigation() {
   const noUser = (
     <>
       <li>
-        <a href="/games/login">Login</a>
+        <Link to="/games/login">Login</Link>
       </li>
       <li>
-        <a href="/games/register">Register</a>
+        <Link to="/games/register">Register</Link>
       </li>
     </>
   );
@@ -33,10 +34,10 @@ function Navigation() {
       <nav>
         <ul className={styles.navigationBox}>
           <li>
-            <a href="/games">GameStop🎮</a>
+            <Link to="/games">GameStop🎮</Link>
           </li>
           <li>
-            <a href="/games/catalog">Catalog</a>
+            <Link to="/games/catalog">Catalog</Link>
           </li>
           {user ? hasUser : noUser}
         </ul>

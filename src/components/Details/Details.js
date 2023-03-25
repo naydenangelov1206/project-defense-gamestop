@@ -1,5 +1,7 @@
-import { useState } from "react";
 import styles from "./Details.module.css";
+
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function Details() {
   const [gameComment, setComment] = useState({
@@ -46,9 +48,9 @@ function Details() {
 
         {isOwner && (
           <div className={styles.buttonContainer}>
-            <a href="/games/edit/" className={styles.editButtonLink}>
+            <Link to="/games/edit/" className={styles.editButtonLink}>
               Edit ✏️
-            </a>
+            </Link>
             <button onClick={gameDeleteHandler} className={styles.deleteButton}>
               Delete ❌
             </button>
