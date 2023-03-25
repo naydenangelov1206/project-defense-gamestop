@@ -1,7 +1,10 @@
 import styles from "./Create.module.css";
 
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { GameContext } from "../../contexts/GameContext";
+
+import * as gameService from "../../services/gameService";
 
 function Create() {
   const [createInfo, setCreateInfo] = useState({
@@ -12,11 +15,25 @@ function Create() {
     maxLevel: "",
   });
 
+  const { gameAdd } = useContext(GameContext);
+
   const navigate = useNavigate();
 
   function onSubmit(e) {
     e.preventDefault();
-    navigate("/games/catalog");
+
+    const gameData = {
+      title: createInfo.title,
+      imageUrl: createInfo.imageUrl,
+      summary: createInfo.summary,
+      category: createInfo.category,
+      maxLevel: createInfo.maxLevel,
+    };
+
+    gameService.create(gameData).then(result => {
+      gameAdd(result);
+      navigate("/games/catalog");
+    });
   }
 
   function onTitleChangeHandler(e) {

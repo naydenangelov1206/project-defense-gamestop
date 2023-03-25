@@ -10,6 +10,8 @@ function gameReducer(state, action) {
       return action.payload.map(x => ({ ...x, comments: [] }));
     case "FETCH_GAME_DETAILS":
       return state.map(x => (x._id === action.gameId ? action.payload : x));
+    case "ADD_GAME":
+      return [...state, action.payload];
     default:
       return state;
   }
@@ -35,6 +37,16 @@ export function GameProvider({ children }) {
     });
   }
 
+  function gameAdd(gameData) {
+    gameDispatcher({
+      type: "ADD_GAME",
+      payload: {
+        ...gameData,
+        comments: [],
+      },
+    });
+  }
+
   function selectGame(gameId) {
     return games.find(x => x._id === gameId);
   }
@@ -45,6 +57,7 @@ export function GameProvider({ children }) {
         games,
         fetchGameDetails,
         selectGame,
+        gameAdd,
       }}
     >
       {children}

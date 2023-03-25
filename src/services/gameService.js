@@ -9,3 +9,7 @@ export function getAll() {
 export function getOne(gameId) {
   return request.get(baseUrl + "/data/games/" + gameId);
 }
+
+export function create(gameData) {
+  return request.post(baseUrl + "/data/games", gameData);
+}

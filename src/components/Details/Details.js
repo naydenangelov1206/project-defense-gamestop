@@ -25,7 +25,7 @@ function Details() {
     gameService.getOne(gameId).then(result => {
       fetchGameDetails(gameId, result);
     });
-  });
+  }, []);
 
   function onCommentChange(e) {
     setComment({ ...gameComment, comment: e.target.value });
