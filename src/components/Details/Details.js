@@ -13,7 +13,7 @@ function Details() {
   });
 
   const { gameId } = useParams();
-  const { fetchGameDetails, selectGame } = useContext(GameContext);
+  const { fetchGameDetails, selectGame, gameDelete } = useContext(GameContext);
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -27,16 +27,25 @@ function Details() {
     });
   }, []);
 
-  function onCommentChange(e) {
-    setComment({ ...gameComment, comment: e.target.value });
-  }
-
   function gameDeleteHandler(e) {
-    console.log("deleted");
+    const confirmation = window.confirm(
+      "Are you sure you want to delete this game"
+    );
+
+    if (confirmation) {
+      gameService.remove(gameId).then(() => {
+        gameDelete(gameId);
+        navigate("/games/catalog");
+      });
+    }
   }
 
   function addCommentHandler(e) {
     e.preventDefault();
+  }
+
+  function onCommentChange(e) {
+    setComment({ ...gameComment, comment: e.target.value });
   }
 
   return (

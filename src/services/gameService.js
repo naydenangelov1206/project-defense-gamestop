@@ -17,3 +17,7 @@ export function create(gameData) {
 export function edit(gameId, gameData) {
   return request.put(baseUrl + "/data/games/" + gameId, gameData);
 }
+
+export function remove(gameId) {
+  return request.del(baseUrl + "/" + gameId);
+}

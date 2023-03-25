@@ -14,6 +14,8 @@ function gameReducer(state, action) {
       return [...state, action.payload];
     case "EDIT_GAME":
       return state.map(x => (x._id === action.gameId ? action.payload : x));
+    case "REMOVE_GAME":
+      return state.filter(x => x._id != action.gameId);
     default:
       return state;
   }
@@ -60,6 +62,10 @@ export function GameProvider({ children }) {
     });
   }
 
+  function gameDelete(gameId) {
+    gameDispatcher({ type: "REMOVE_GAME", gameId });
+  }
+
   function selectGame(gameId) {
     return games.find(x => x._id === gameId);
   }
@@ -72,6 +78,7 @@ export function GameProvider({ children }) {
         selectGame,
         gameAdd,
         gameEdit,
+        gameDelete,
       }}
     >
       {children}
