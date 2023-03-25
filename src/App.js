@@ -3,6 +3,7 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { AuthProvider } from "./contexts/AuthContext";
+import { GameProvider } from "./contexts/GameContext";
 
 import Create from "./components/Create/Create";
 import Details from "./components/Details/Details";
@@ -20,19 +21,21 @@ function App() {
     <AuthProvider>
       <Router>
         <Navigation />
-        <main id="gameStopApp">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/games/catalog" element={<Catalog />} />
-            <Route path="/games/logout" element={<Logout />} />
-            <Route path="/games/create" element={<Create />} />
-            <Route path="/games/details/:gameId" element={<Details />} />
-            <Route path="/games/edit/:gameId" element={<Edit />} />
-            <Route path="/games/register" element={<Register />} />
-            <Route path="/games/login" element={<Login />} />
-            <Route path="*" element={<ErrorPage />} />
-          </Routes>
-        </main>
+        <GameProvider>
+          <main id="gameStopApp">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/games/catalog" element={<Catalog />} />
+              <Route path="/games/logout" element={<Logout />} />
+              <Route path="/games/create" element={<Create />} />
+              <Route path="/games/details/:gameId" element={<Details />} />
+              <Route path="/games/edit/:gameId" element={<Edit />} />
+              <Route path="/games/register" element={<Register />} />
+              <Route path="/games/login" element={<Login />} />
+              <Route path="*" element={<ErrorPage />} />
+            </Routes>
+          </main>
+        </GameProvider>
       </Router>
     </AuthProvider>
   );

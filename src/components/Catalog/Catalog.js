@@ -1,16 +1,11 @@
-import { useEffect, useState } from "react";
 import styles from "./Catalog.module.css";
 import Game from "./Game";
-import * as gameService from "../../services/gameService";
+
+import { useContext } from "react";
+import { GameContext } from "../../contexts/GameContext";
 
 function Catalog() {
-  const [games, setGames] = useState([]);
-
-  useEffect(() => {
-    gameService.getAll().then(gameData => {
-      setGames(gameData);
-    });
-  }, []);
+  const { games } = useContext(GameContext);
 
   return (
     <section className={styles.catalogContainer}>
