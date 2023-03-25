@@ -13,6 +13,7 @@ import Login from "./components/Login/Login";
 import Navigation from "./components/Navigation/Navigation";
 import Register from "./components/Register/Register";
 import Logout from "./components/Logout/Logout";
+import Catalog from "./components/Catalog/Catalog";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <main id="gameStopApp">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/games/catalog" element={<Catalog />} />
             <Route path="/games/logout" element={<Logout />} />
             <Route path="/games/create" element={<Create />} />
             <Route path="/games/details/:gameId" element={<Details />} />

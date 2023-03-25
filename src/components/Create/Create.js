@@ -16,7 +16,7 @@ function Create() {
 
   function onSubmit(e) {
     e.preventDefault();
-    navigate("/as");
+    navigate("/games/catalog");
   }
 
   function onTitleChangeHandler(e) {
