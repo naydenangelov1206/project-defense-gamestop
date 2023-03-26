@@ -16,7 +16,7 @@ function Login() {
 
   const { userLogin } = useContext(AuthContext);
 
-  const navigate = useNavigate("");
+  const navigate = useNavigate();
 
   function onSubmit(e) {
     e.preventDefault();
@@ -28,7 +28,10 @@ function Login() {
         navigate("/");
       })
       .catch(err => {
-        console.log(err.message);
+        setError(err);
+        setTimeout(() => {
+          setError("");
+        }, 2000);
       });
   }
 
@@ -42,9 +45,11 @@ function Login() {
 
   return (
     <section className={styles.loginFormContainer}>
-      <div className={styles.errorMessageContainer}>
-        {error ? <p className={styles.errorMessage}>{error}</p> : null}
-      </div>
+      {error ? (
+        <div className={styles.errorMessageContainer}>
+          <p className={styles.errorMessage}>{error}</p>
+        </div>
+      ) : null}
 
       <form onSubmit={onSubmit} className={styles.formLogin}>
         <h2 className={styles.loginFormTitle}>Login</h2>

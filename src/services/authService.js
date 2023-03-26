@@ -2,8 +2,17 @@ import { baseUrl } from "../utils/address";
 
 import * as request from "./requester";
 
-export function login(email, password) {
-  return request.post(baseUrl + "/users/login", { email, password });
+export async function login(email, password) {
+  try {
+    const result = await request.post(baseUrl + "/users/login", {
+      email,
+      password,
+    });
+
+    return result;
+  } catch (err) {
+    throw err;
+  }
 }
 
 export async function logout(accessToken) {

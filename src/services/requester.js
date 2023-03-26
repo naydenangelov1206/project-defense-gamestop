@@ -23,13 +23,18 @@ export async function request(method, url, data) {
         body: JSON.stringify(data),
       });
     }
+
     const response = await requestBuilder;
+
+    if (response.status === 403) {
+      throw new Error("Invalid email or password");
+    }
 
     const result = await response.json();
 
     return result;
   } catch (err) {
-    console.log(err);
+    throw err.message;
   }
 }
 

@@ -86,3 +86,14 @@
   color: white;
   font-size: 25px;
 }
+
+.errorMessageContainer {
+  background-color: red;
+  border: 5px solid white;
+  position: absolute;
+  left: 1400px;
+  bottom: 720px;
+  padding: 20px;
+  width: 500px;
+  border-radius: 10px;
+}

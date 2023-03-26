@@ -5,7 +5,6 @@ import { AuthContext } from "../../contexts/AuthContext";
 function PublicGuard() {
   const { isAuthenticated } = useContext(AuthContext);
 
-  console.log(isAuthenticated);
   if (isAuthenticated) {
     return <Navigate to="/" replace />;
   }
