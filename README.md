@@ -117,7 +117,7 @@ You can also create comments by going to the **Game Details page** and if you ar
 After logging in you can go to _/games/catalog_ or click on the **Catalog Link**
 after you are in the Catalog page all games of of all users will show on the screen and you can also click on the **Details Link** under every game to view further information only about that specific game:
 
-![](/public/images/catalog)
+![](/public/images/catalog.png)
 
 > Update
 
