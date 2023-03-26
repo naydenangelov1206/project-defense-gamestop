@@ -16,6 +16,7 @@ import Register from "./components/Register/Register";
 import Logout from "./components/Logout/Logout";
 import Catalog from "./components/Catalog/Catalog";
 import PrivateGuard from "./components/common/PrivateGuard";
+import PublicGuard from "./components/common/PublicGuard";
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
           <main id="gameStopApp">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/games/catalog" element={<Catalog />} />
+
               <Route path="/games/details/:gameId" element={<Details />} />
 
               <Route element={<PrivateGuard />}>
@@ -33,10 +36,13 @@ function App() {
                 <Route path="/games/logout" element={<Logout />} />
               </Route>
 
-              <Route path="/games/catalog" element={<Catalog />} />
               <Route path="/games/edit/:gameId" element={<Edit />} />
-              <Route path="/games/register" element={<Register />} />
-              <Route path="/games/login" element={<Login />} />
+
+              <Route element={<PublicGuard />}>
+                <Route path="/games/register" element={<Register />} />
+                <Route path="/games/login" element={<Login />} />
+              </Route>
+
               <Route path="*" element={<ErrorPage />} />
             </Routes>
           </main>
