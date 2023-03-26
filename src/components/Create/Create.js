@@ -15,12 +15,69 @@ function Create() {
     maxLevel: "",
   });
 
+  const [error, setError] = useState("");
+
   const { gameAdd } = useContext(GameContext);
 
+  const imageRegEx = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
   const navigate = useNavigate();
 
   function onSubmit(e) {
     e.preventDefault();
+
+    if (
+      createInfo.title === "" ||
+      createInfo.imageUrl === "" ||
+      createInfo.summary === "" ||
+      createInfo.category === "" ||
+      createInfo.maxLevel === ""
+    ) {
+      setError("All fields are required");
+      setTimeout(() => {
+        setError("");
+      }, 2000);
+      return;
+    }
+
+    if (createInfo.title.length < 5) {
+      setError("Title should be at least 5 characters");
+      setTimeout(() => {
+        setError("");
+      }, 2000);
+      return;
+    }
+
+    if (!imageRegEx.test(createInfo.imageUrl)) {
+      setError("Invalid image URL");
+      setTimeout(() => {
+        setError("");
+      }, 2000);
+      return;
+    }
+
+    if (createInfo.maxLevel === 0 || createInfo.maxLevel < 0) {
+      setError("MaxLevel can't be 0 or below");
+      setTimeout(() => {
+        setError("");
+      }, 2000);
+      return;
+    }
+
+    if (createInfo.category.length < 5) {
+      setError("Category should be at least 5 characters");
+      setTimeout(() => {
+        setError("");
+      }, 2000);
+      return;
+    }
+
+    if (createInfo.summary.length < 10) {
+      setError("Summary should be at least 10 characters");
+      setTimeout(() => {
+        setError("");
+      }, 2000);
+      return;
+    }
 
     const gameData = {
       title: createInfo.title,
@@ -58,6 +115,12 @@ function Create() {
 
   return (
     <section className={styles.createFormContainer}>
+      {!error ? null : (
+        <div className={styles.createErrors}>
+          <p>{error}</p>
+        </div>
+      )}
+
       <form onSubmit={onSubmit} className={styles.createForm}>
         <h2 className={styles.createFormTitle}>Create Game</h2>
 
