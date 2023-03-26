@@ -18,6 +18,7 @@ import Catalog from "./components/Catalog/Catalog";
 import PrivateGuard from "./components/common/PrivateGuard";
 import PublicGuard from "./components/common/PublicGuard";
 import GameOwner from "./components/common/GameOwner";
+import GameDetails from "./components/common/GameDetails";
 
 function App() {
   return (
@@ -30,7 +31,9 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/games/catalog" element={<Catalog />} />
 
-              <Route path="/games/details/:gameId" element={<Details />} />
+              <Route element={<GameDetails />}>
+                <Route path="/games/details/:gameId" element={<Details />} />
+              </Route>
 
               <Route element={<PrivateGuard />}>
                 <Route path="/games/create" element={<Create />} />
