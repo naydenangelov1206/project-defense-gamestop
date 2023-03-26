@@ -80,3 +80,20 @@
   font-size: 25px;
   font-weight: bold;
 }
+
+.registerErrors {
+  background-color: red;
+  border: 5px solid white;
+  position: absolute;
+  left: 1400px;
+  bottom: 760px;
+  padding: 20px;
+  width: 500px;
+  border-radius: 10px;
+}
+
+.registerErrors p {
+  font-size: 25px;
+  color: white;
+  text-align: center;
+}

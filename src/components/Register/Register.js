@@ -13,17 +13,58 @@ function Register() {
     repass: "",
   });
 
+  const [error, setError] = useState("");
+
+  const emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
   const navigate = useNavigate();
   const { userLogin } = useContext(AuthContext);
 
   function onSubmit(e) {
     e.preventDefault();
 
+    if (registerInfo.password !== registerInfo.repass) {
+      setError("Passwords don't match");
+      setTimeout(() => {
+        setError("");
+      }, 2000);
+      return;
+    }
+
+    if (registerInfo.password.length < 5) {
+      setError("Password should have at least 5 characters");
+      setTimeout(() => {
+        setError("");
+      }, 2000);
+      return;
+    }
+
+    if (registerInfo.email.length < 8) {
+      setError("Email should have at least 5 characters");
+      setTimeout(() => {
+        setError("");
+      }, 2000);
+      return;
+    }
+
+    if (!emailRegEx.test(registerInfo.email)) {
+      setError("Email doesn't exist");
+      setTimeout(() => {
+        setError("");
+      }, 2000);
+      return;
+    }
+
     authService
       .register(registerInfo.email, registerInfo.password)
       .then(authData => {
         userLogin(authData);
         navigate("/");
+      })
+      .catch(err => {
+        setError(err);
+        setTimeout(() => {
+          setError("");
+        }, 2000);
       });
   }
 
@@ -49,6 +90,12 @@ function Register() {
 
   return (
     <section className={styles.registerFormContainer}>
+      {!error ? null : (
+        <div className={styles.registerErrors}>
+          <p>{error}</p>
+        </div>
+      )}
+
       <form onSubmit={onSubmit} className={styles.registerForm}>
         <h2 className={styles.registerFormTitle}>Register</h2>
 

@@ -24,10 +24,15 @@ export async function request(method, url, data) {
       });
     }
 
+    debugger;
     const response = await requestBuilder;
 
     if (response.status === 403) {
       throw new Error("Invalid email or password");
+    }
+
+    if (response.status === 409) {
+      throw new Error("Email is taken");
     }
 
     const result = await response.json();

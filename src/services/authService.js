@@ -31,9 +31,15 @@ export async function logout(accessToken) {
   }
 }
 
-export function register(email, password) {
-  return request.post(baseUrl + "/users/register", {
-    email,
-    password,
-  });
+export async function register(email, password) {
+  try {
+    const result = await request.post(baseUrl + "/users/register", {
+      email,
+      password,
+    });
+
+    return result;
+  } catch (err) {
+    throw err;
+  }
 }
