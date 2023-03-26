@@ -96,3 +96,20 @@
 .editFormSummary::-webkit-scrollbar-thumb:hover {
   background: #45545a;
 }
+
+.editErrors {
+  background-color: red;
+  border: 5px solid white;
+  position: absolute;
+  left: 1400px;
+  bottom: 810px;
+  padding: 20px;
+  width: 500px;
+  border-radius: 10px;
+}
+
+.editErrors p {
+  font-size: 25px;
+  color: white;
+  text-align: center;
+}

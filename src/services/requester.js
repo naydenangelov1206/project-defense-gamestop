@@ -24,7 +24,6 @@ export async function request(method, url, data) {
       });
     }
 
-    debugger;
     const response = await requestBuilder;
 
     if (response.status === 403) {

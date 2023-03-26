@@ -15,7 +15,10 @@ function Edit() {
     maxLevel: "",
   });
 
+  const [error, setError] = useState("");
+
   const navigate = useNavigate();
+  const imageRegEx = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
 
   const { gameId } = useParams();
   const { gameEdit } = useContext(GameContext);
@@ -45,6 +48,60 @@ function Edit() {
       maxLevel: editInfo.maxLevel,
     };
 
+    if (
+      editInfo.title === "" ||
+      editInfo.imageUrl === "" ||
+      editInfo.summary === "" ||
+      editInfo.category === "" ||
+      editInfo.maxLevel === ""
+    ) {
+      setError("All fields are required");
+      setTimeout(() => {
+        setError("");
+      }, 2000);
+      return;
+    }
+
+    if (editInfo.title.length < 5) {
+      setError("Title should be at least 5 characters");
+      setTimeout(() => {
+        setError("");
+      }, 2000);
+      return;
+    }
+
+    if (!imageRegEx.test(editInfo.imageUrl)) {
+      setError("Invalid image URL");
+      setTimeout(() => {
+        setError("");
+      }, 2000);
+      return;
+    }
+
+    if (editInfo.maxLevel === 0 || editInfo.maxLevel < 0) {
+      setError("MaxLevel can't be 0 or below");
+      setTimeout(() => {
+        setError("");
+      }, 2000);
+      return;
+    }
+
+    if (editInfo.category.length < 5) {
+      setError("Category should be at least 5 characters");
+      setTimeout(() => {
+        setError("");
+      }, 2000);
+      return;
+    }
+
+    if (editInfo.summary.length < 10) {
+      setError("Summary should be at least 10 characters");
+      setTimeout(() => {
+        setError("");
+      }, 2000);
+      return;
+    }
+
     gameService.edit(gameId, gameData).then(result => {
       gameEdit(gameId, result);
       navigate("/games/catalog");
@@ -73,6 +130,11 @@ function Edit() {
 
   return (
     <section className={styles.editFormContainer}>
+      {!error ? null : (
+        <div className={styles.editErrors}>
+          <p>{error}</p>
+        </div>
+      )}
       <form onSubmit={onSubmit} className={styles.editForm}>
         <h2 className={styles.editFormTitle}>Edit Game</h2>
 
