@@ -17,6 +17,7 @@ import Logout from "./components/Logout/Logout";
 import Catalog from "./components/Catalog/Catalog";
 import PrivateGuard from "./components/common/PrivateGuard";
 import PublicGuard from "./components/common/PublicGuard";
+import GameOwner from "./components/common/GameOwner";
 
 function App() {
   return (
@@ -36,7 +37,9 @@ function App() {
                 <Route path="/games/logout" element={<Logout />} />
               </Route>
 
-              <Route path="/games/edit/:gameId" element={<Edit />} />
+              <Route element={<GameOwner />}>
+                <Route path="/games/edit/:gameId" element={<Edit />} />
+              </Route>
 
               <Route element={<PublicGuard />}>
                 <Route path="/games/register" element={<Register />} />
